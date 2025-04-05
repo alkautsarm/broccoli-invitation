@@ -1,5 +1,15 @@
+import Footer from './components/Footer';
+import Header from './components/Header';
+import PageRoutes from './pages';
+
 function App() {
-  return <main>Brocolli & Co.</main>;
+  return (
+    <>
+      <Header />
+      <PageRoutes />
+      <Footer />
+    </>
+  );
 }
 
 export default App;
