@@ -1,10 +1,18 @@
+import { UseFormRegisterReturn } from 'react-hook-form';
+
 interface ITextInputProps {
   errorMessage?: string;
+  inputRegister?: UseFormRegisterReturn;
   placeholder?: string;
   type?: 'text' | 'email';
 }
 
-const TextInput = ({ errorMessage, placeholder, type }: ITextInputProps) => {
+const TextInput = ({
+  errorMessage,
+  inputRegister,
+  placeholder,
+  type,
+}: ITextInputProps) => {
   let inputStyle = 'w-full border-1 rounded-xs py-2 px-3';
 
   if (errorMessage) {
@@ -12,10 +20,17 @@ const TextInput = ({ errorMessage, placeholder, type }: ITextInputProps) => {
   }
 
   return (
-    <div>
-      <input className={inputStyle} placeholder={placeholder} type={type} />
+    <div className="relative mb-2">
+      <input
+        {...inputRegister}
+        className={inputStyle}
+        placeholder={placeholder}
+        type={type}
+      />
       {errorMessage && (
-        <span className="text-sm text-red-700">{errorMessage}</span>
+        <span className="absolute top-11 left-0 text-xs text-red-700">
+          {errorMessage}
+        </span>
       )}
     </div>
   );
