@@ -1,8 +1,6 @@
-import Button from '../components/base/Button';
+import RegisterButton from '../components/registration/RegisterButton';
 
 const Home = () => {
-  const showRequestModal = () => {};
-
   return (
     <main className="flex flex-col text-center justify-center gap-4 md:gap-8">
       <h1 className="text-3xl font-bold tracking-wider md:text-6xl">
@@ -13,7 +11,7 @@ const Home = () => {
         Be the first to know when we launch.
       </p>
       <div>
-        <Button onClick={showRequestModal}>Request an invite</Button>
+        <RegisterButton />
       </div>
     </main>
   );
