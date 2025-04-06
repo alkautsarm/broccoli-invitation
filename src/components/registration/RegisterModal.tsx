@@ -50,7 +50,7 @@ const RegisterForm = ({ formHook }: IRegisterFormProps) => {
 const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const formHook = useForm<IRegisterForm>();
-  const { fetchData } = useFetch({
+  const { isLoading, fetchData } = useFetch({
     url: API_REGISTER_INVITATION,
     method: 'POST',
   });
@@ -73,10 +73,15 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
     title: 'Request an invite',
     content: <RegisterForm formHook={formHook} />,
     footer: (
-      <Button className="w-full" onClick={formHook.handleSubmit(onSubmit)}>
-        Send
+      <Button
+        className="w-full"
+        loading={isLoading}
+        onClick={formHook.handleSubmit(onSubmit)}
+      >
+        {isLoading ? 'Sending, please wait...' : 'Send'}
       </Button>
     ),
+    loading: isLoading,
   };
 
   const successModalProps = {
@@ -92,6 +97,7 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
         OK
       </Button>
     ),
+    loading: isLoading,
   };
 
   const modalProps = isSuccess

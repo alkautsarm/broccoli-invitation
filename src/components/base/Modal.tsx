@@ -5,13 +5,14 @@ interface IModalProps {
   title: string;
   content: React.ReactNode;
   footer: React.ReactNode;
+  loading?: boolean;
   modalRef: RefObject<HTMLDialogElement | null>;
 }
 
-const Modal = ({ content, footer, modalRef, title }: IModalProps) => {
+const Modal = ({ content, footer, loading, modalRef, title }: IModalProps) => {
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
-      if (modalRef.current === event.target) {
+      if (!loading && modalRef.current === event.target) {
         modalRef.current?.close();
       }
     };
@@ -21,7 +22,7 @@ const Modal = ({ content, footer, modalRef, title }: IModalProps) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [modalRef]);
+  }, [loading, modalRef]);
 
   return (
     <>
