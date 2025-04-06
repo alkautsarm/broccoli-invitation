@@ -1,19 +1,39 @@
 import { RefObject, useState } from 'react';
 import Button from '../base/Button';
 import Modal from '../base/Modal';
+import TextInput from '../base/TextInput';
 
 interface IRegisterModalProps {
   modalRef: RefObject<HTMLDialogElement | null>;
 }
 
+const RegisterForm = () => {
+  return (
+    <form className="flex flex-col gap-4">
+      <TextInput placeholder="Full name" />
+      <TextInput placeholder="Email" type="email" />
+      <TextInput placeholder="Confirm email" type="email" />
+    </form>
+  );
+};
+
 const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
-  const [isSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const submitData = () => {
+    setIsSuccess(true);
+  };
+
+  const closeModal = () => {
+    setIsSuccess(false);
+    modalRef.current?.close();
+  };
 
   const formModalProps = {
     title: 'Request an invite',
-    content: <div className="text-center">Form</div>,
+    content: <RegisterForm />,
     footer: (
-      <Button className="w-full" onClick={() => {}}>
+      <Button className="w-full" onClick={submitData}>
         Send
       </Button>
     ),
@@ -28,7 +48,7 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
       </div>
     ),
     footer: (
-      <Button className="w-full" onClick={() => {}}>
+      <Button className="w-full" onClick={closeModal}>
         OK
       </Button>
     ),
