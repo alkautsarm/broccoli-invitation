@@ -1,9 +1,9 @@
-import { Ref, useState } from 'react';
+import { RefObject, useState } from 'react';
 import Button from '../base/Button';
 import Modal from '../base/Modal';
 
 interface IRegisterModalProps {
-  modalRef: Ref<HTMLDialogElement | null>;
+  modalRef: RefObject<HTMLDialogElement | null>;
 }
 
 const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
