@@ -3,14 +3,14 @@ import { useForm, UseFormReturn } from 'react-hook-form';
 import Button from '../base/Button';
 import Modal from '../base/Modal';
 import TextInput from '../base/TextInput';
-import useFetch from '../../hooks/useFetch';
-import { API_REGISTER_INVITATION } from '../../constants/api';
-import { IRegisterForm, IRegisterPayload } from '../../interfaces/register';
+import useFetch from '@/hooks/useFetch';
+import { API_REGISTER_INVITATION } from '@/constants/api';
+import { IRegisterForm, IRegisterPayload } from '@/interfaces/register';
 import {
   ConfirmEmailField,
   EmailField,
   NameField,
-} from '../../constants/formSchema';
+} from '@/constants/formSchema';
 
 interface IRegisterFormProps {
   formHook: UseFormReturn<IRegisterForm>;

@@ -1,4 +1,4 @@
-import RegisterButton from '../components/registration/RegisterButton';
+import RegisterButton from '@/components/registration/RegisterButton';
 
 const Home = () => {
   return (

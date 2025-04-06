@@ -1,5 +1,5 @@
 import { RegisterOptions } from 'react-hook-form';
-import { IRegisterForm } from '../interfaces/register';
+import { IRegisterForm } from '@/interfaces/register';
 
 export const NameField: RegisterOptions<IRegisterForm, 'name'> = {
   required: 'Name is required',
