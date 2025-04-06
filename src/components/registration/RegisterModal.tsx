@@ -5,7 +5,7 @@ import Modal from '../base/Modal';
 import TextInput from '../base/TextInput';
 import useFetch from '../../hooks/useFetch';
 import { API_REGISTER_INVITATION } from '../../constants/api';
-import { IRegisterForm } from '../../interfaces/register';
+import { IRegisterForm, IRegisterPayload } from '../../interfaces/register';
 import {
   ConfirmEmailField,
   EmailField,
@@ -50,9 +50,10 @@ const RegisterForm = ({ formHook }: IRegisterFormProps) => {
 const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const formHook = useForm<IRegisterForm>();
-  const { isLoading, fetchData } = useFetch({
+  const { error, isLoading, fetchData } = useFetch<IRegisterPayload, unknown>({
     url: API_REGISTER_INVITATION,
     method: 'POST',
+    onSuccess: () => setIsSuccess(true),
   });
 
   const onSubmit = async (data: IRegisterForm) => {
@@ -60,11 +61,10 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
       name: data.name,
       email: data.email,
     });
-    formHook.reset();
-    setIsSuccess(true);
   };
 
   const closeModal = () => {
+    formHook.reset();
     setIsSuccess(false);
     modalRef.current?.close();
   };
@@ -73,15 +73,21 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
     title: 'Request an invite',
     content: <RegisterForm formHook={formHook} />,
     footer: (
-      <Button
-        className="w-full"
-        loading={isLoading}
-        onClick={formHook.handleSubmit(onSubmit)}
-      >
-        {isLoading ? 'Sending, please wait...' : 'Send'}
-      </Button>
+      <div className="relative">
+        <Button
+          className="w-full"
+          loading={isLoading}
+          onClick={formHook.handleSubmit(onSubmit)}
+        >
+          {isLoading ? 'Sending, please wait...' : 'Send'}
+        </Button>
+        {error && (
+          <div className="text-center mt-8 text-sm text-red-700">
+            {error.message}
+          </div>
+        )}
+      </div>
     ),
-    loading: isLoading,
   };
 
   const successModalProps = {
@@ -97,12 +103,11 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
         OK
       </Button>
     ),
-    loading: isLoading,
   };
 
   const modalProps = isSuccess
-    ? { modalRef, ...successModalProps }
-    : { modalRef, ...formModalProps };
+    ? { modalRef, loading: isLoading, closeModal, ...successModalProps }
+    : { modalRef, loading: isLoading, closeModal, ...formModalProps };
 
   return <Modal {...modalProps} />;
 };

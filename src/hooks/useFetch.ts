@@ -3,16 +3,23 @@ import { useState } from 'react';
 interface IUseFetchProps {
   method?: string;
   url: string;
+  onSuccess?: () => void;
+  onError?: () => void;
 }
 
-const useFetch = <Req, Res>({ method = 'GET', url }: IUseFetchProps) => {
-  const [isLoading, seIstLoading] = useState(false);
+const useFetch = <Req, Res>({
+  method = 'GET',
+  url,
+  onSuccess,
+  onError,
+}: IUseFetchProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Res | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
   const fetchData = async (body?: Req) => {
     try {
-      seIstLoading(true);
+      setIsLoading(true);
 
       const response = await fetch(url, {
         method,
@@ -20,11 +27,17 @@ const useFetch = <Req, Res>({ method = 'GET', url }: IUseFetchProps) => {
       });
       const reponseJson = await response.json();
 
-      setData(reponseJson as Res);
+      if (response.ok) {
+        setData(reponseJson as Res);
+        onSuccess?.();
+      } else {
+        throw new Error(reponseJson.errorMessage);
+      }
     } catch (err: unknown) {
       setError(err as Error);
+      onError?.();
     } finally {
-      seIstLoading(false);
+      setIsLoading(false);
     }
   };
 

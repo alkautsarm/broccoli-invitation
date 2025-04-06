@@ -3,3 +3,5 @@ export interface IRegisterForm {
   email: string;
   emailConfirmation: string;
 }
+
+export type IRegisterPayload = Omit<IRegisterForm, 'emailConfirmation'>;
