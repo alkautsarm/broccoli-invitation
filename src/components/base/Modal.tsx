@@ -41,7 +41,7 @@ const Modal = ({
             rounded-xs
             md:max-w-120
             w-full
-            border-1
+            shadow-xl
             absolute
             left-1/2
             -translate-1/2
