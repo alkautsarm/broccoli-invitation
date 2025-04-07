@@ -7,7 +7,9 @@ describe('Home Page', () => {
     const { getByRole, getByText } = render(<Home />);
 
     await expect
-      .element(getByText('A better way to enjoy every day.'))
+      .element(
+        getByRole('heading', { hasText: 'A better way to enjoy every day.' }),
+      )
       .toBeInTheDocument();
     await expect
       .element(getByText('Be the first to know when we launch.'))
