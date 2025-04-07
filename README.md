@@ -1,54 +1,85 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🥦 Broccoli & Co. Invitation Website 
 
-Currently, two official plugins are available:
+Broccoli & Co. is an upcoming online service company. This project provides Invitation Website to Broccolli's user.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Initialization
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Initialization step is mandatory before starting local development, production build, and testing. To initialize this project, clone this project using HTTPS or SSH. Below example use HTTPS.
+```bash
+  git clone https://github.com/alkautsarm/broccoli-invitation.git
+  cd broccoli-invitation
+  yarn
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Install packages.
+```bash
+  yarn
 ```
+
+## ⚙️ Local Development
+
+Run local development using below script to enable Hot Module Replacement (HMR).
+
+```bash
+  yarn dev
+```
+
+## 🚀 Production Build
+
+To build the app, run below command. The build files will be generated in `dist` folder. You can deploy this `dist` folder using your preferance static server.
+
+```bash
+  yarn build
+```
+
+To check your production build in local, run below command. (Notes: Only use `preview` for local environment).
+
+```bash
+  yarn preview
+```
+Detail of production build can check [Vite Static Deploy Docs](https://vite.dev/guide/static-deploy).
+
+## 🧪 Testing
+
+Before start watch testing, run below script for testing initialization. This script will enable playwright to add dependency and install browsers (ex: Chromium).
+
+```bash
+  yarn test:init
+```
+
+Then, run below script to start watching your testing.
+
+```bash
+  yarn test:start
+```
+
+## 💻 Technology Stacks
+
+|Technology| Usage |
+|--|--|
+| React | Component-based frontend library |
+| Vite | Fast and modern frontend build tool |
+| React Hook Form | Form management library  in React |
+| Tailwind CSS | Utility-first CSS framework |
+| Vitest & Playwright | Testing framework |
+| ESLint & Prettier | Code standardization and formatter |
+| Husky & Lint Staged | Git hooks to run eslint and prettier script upon Git committing |
+| Commitlint | Standardize commit message |
+   
+## 📂 Project Structure
+
+```bash
+src/
+├── assets/			# Images, icons, etc.
+├── components/     # Reusable UI components
+├── constants/      # Shared constants
+├── hooks/          # Custom React hooks
+├── interfaces/     # Shared interfaces and types
+├── pages/          # Route-level pages
+└── App.tsx         # Root component
+```
+
+## 👨🏻‍💻 Authors
+
+[@alkautsarm](https://github.com/alkautsarm)
