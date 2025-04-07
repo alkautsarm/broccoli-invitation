@@ -37,7 +37,23 @@ const Modal = ({
       {createPortal(
         <dialog
           ref={modalRef}
-          className="md:max-w-120 w-full border-1 absolute top-1/2 left-1/2 -translate-1/2"
+          className="
+            rounded-xs
+            md:max-w-120
+            w-full
+            border-1
+            absolute
+            left-1/2
+            -translate-1/2
+            block
+            not-open:opacity-0
+            not-open:pointer-events-none
+            open:opacity-100
+            open:top-1/2
+            not-open:top-full
+            duration-500
+            open:backdrop:backdrop-blur-xs
+          "
         >
           <div className="px-8 py-12 ">
             <div className="text-center flex flex-col items-center gap-4 mb-8">

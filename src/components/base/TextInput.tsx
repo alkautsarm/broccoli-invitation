@@ -27,11 +27,11 @@ const TextInput = ({
         placeholder={placeholder}
         type={type}
       />
-      {errorMessage && (
-        <span className="absolute top-11 left-0 text-xs text-red-700">
-          {errorMessage}
-        </span>
-      )}
+      <span
+        className={`absolute left-0 text-xs text-red-700 duration-200 ${errorMessage ? 'top-11' : 'top-8'}`}
+      >
+        {errorMessage}
+      </span>
     </div>
   );
 };
