@@ -71,7 +71,7 @@ Then, run below script to start watching your testing.
 
 ```bash
 src/
-├── assets/			# Images, icons, etc.
+├── assets/			    # Images, icons, etc.
 ├── components/     # Reusable UI components
 ├── constants/      # Shared constants
 ├── hooks/          # Custom React hooks

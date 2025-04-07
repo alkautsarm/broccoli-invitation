@@ -37,7 +37,7 @@ const Modal = ({
       {createPortal(
         <dialog
           ref={modalRef}
-          className="w-3/4 border-1 absolute top-1/2 left-1/2 -translate-1/2"
+          className="md:max-w-120 w-full border-1 absolute top-1/2 left-1/2 -translate-1/2"
         >
           <div className="px-8 py-12 ">
             <div className="text-center flex flex-col items-center gap-4 mb-8">
