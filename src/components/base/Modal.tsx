@@ -50,12 +50,12 @@ const Modal = ({
             not-open:pointer-events-none
             open:opacity-100
             open:top-1/2
-            not-open:top-full
+            not-open:top-0
             duration-500
             open:backdrop:backdrop-blur-xs
           "
         >
-          <div className="px-8 py-12 ">
+          <div className="px-8 py-12">
             <div className="text-center flex flex-col items-center gap-4 mb-8">
               <div className="font-bold text-xl italic">{title}</div>
               <hr className="w-10" />
