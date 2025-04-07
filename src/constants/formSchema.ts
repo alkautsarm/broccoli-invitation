@@ -29,7 +29,7 @@ export const ConfirmEmailField: RegisterOptions<
   validate: (value, form) => {
     return (
       value === form['email'] ||
-      'Cofnirm email should have the same value with email'
+      'Confirm email should have the same value with email'
     );
   },
 };

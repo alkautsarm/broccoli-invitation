@@ -50,7 +50,10 @@ const RegisterForm = ({ formHook }: IRegisterFormProps) => {
 const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const formHook = useForm<IRegisterForm>();
-  const { error, isLoading, fetchData } = useFetch<IRegisterPayload, unknown>({
+  const { error, isLoading, fetchData, reset } = useFetch<
+    IRegisterPayload,
+    unknown
+  >({
     url: API_REGISTER_INVITATION,
     method: 'POST',
     onSuccess: () => setIsSuccess(true),
@@ -64,6 +67,7 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
   };
 
   const closeModal = () => {
+    reset();
     formHook.reset();
     setIsSuccess(false);
     modalRef.current?.close();
@@ -81,11 +85,20 @@ const RegisterModal = ({ modalRef }: IRegisterModalProps) => {
         >
           {isLoading ? 'Sending, please wait...' : 'Send'}
         </Button>
-        {error && (
-          <div className="text-center mt-8 text-sm text-red-700">
-            {error.message}
-          </div>
-        )}
+        <div
+          className={`
+            absolute
+            left-0
+            right-0
+            text-center
+            text-sm
+            text-red-700
+            duration-200
+            ${error?.message ? 'top-16' : 'top-12'}
+          `}
+        >
+          {error?.message}
+        </div>
       </div>
     ),
   };

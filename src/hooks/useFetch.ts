@@ -41,7 +41,13 @@ const useFetch = <Req, Res>({
     }
   };
 
-  return { isLoading, data, error, fetchData };
+  const reset = () => {
+    setIsLoading(false);
+    setData(null);
+    setError(null);
+  };
+
+  return { isLoading, data, error, fetchData, reset };
 };
 
 export default useFetch;

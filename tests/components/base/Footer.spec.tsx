@@ -10,7 +10,7 @@ describe('Footer Component', () => {
       .element(getByText('Made with ♥︎ in Melbourne.'))
       .toBeInTheDocument();
     await expect
-      .element(getByText('©️ Broccoli & Co. All rights reserved.'))
+      .element(getByText('© Broccoli & Co. All rights reserved.'))
       .toBeInTheDocument();
   });
 });
