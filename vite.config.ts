@@ -6,6 +6,8 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
+  // For Github Pages deployment. In local, it will be redirected to /
+  base: '/broccoli-invitation',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
